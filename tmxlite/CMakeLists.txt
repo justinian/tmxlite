@@ -32,16 +32,13 @@ endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-
-#includes the list of source files in the src directory
-SET(PROJECT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
-include(${PROJECT_DIR}/CMakeLists.txt)
+file(GLOB PROJECT_SRC "src/*.cpp" "src/*.c")
 
 if(WIN32)
   if(TMXLITE_STATIC_LIB)
-    add_library(${PROJECT_NAME} STATIC WIN32 ${PROJECT_SRC})
+    add_library(${PROJECT_NAME} STATIC ${PROJECT_SRC})
   else()
-    add_library(${PROJECT_NAME} SHARED WIN32 ${PROJECT_SRC})
+    add_library(${PROJECT_NAME} SHARED ${PROJECT_SRC})
   endif()   
 else()
   if(TMXLITE_STATIC_LIB)
